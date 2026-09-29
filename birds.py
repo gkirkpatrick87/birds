@@ -331,7 +331,8 @@ print("Thank you for answering! Have a great day :)\n\n\n")
 
 
 with output_path.open("a") as outputfile:
-    print(fbird, cbird, food_object,file=outputfile)
+    print("Favorite Bird","Favorite Color", "Early Bird or Night Owl", sep='\t', file=outputfile)
+    print(fbird, cbird, food_object, sep='\t', file=outputfile)
 
 
 #get input from users
