@@ -1,8 +1,23 @@
-
 from pathlib import Path
 
-output_path = Path(__file__).with_name("birds_output.txt")
-output_path.write_text("")
+#package communicating with sharepoint microsoft graft api
+
+outputfile = "birds_output.txt"
+
+with open(outputfile, "r") as file:
+    line_count = len(file.readlines())
+
+responses = line_count
+
+namefirst = input("What is your first name?")
+namelast = input("What is your last name?")
+
+gender = input("What gender do you identify with?")
+
+print("There have been",responses,"responses so far!")
+
+
+
 
 mybird1 = """ This is bird 1:
              /----------|
@@ -47,7 +62,7 @@ if fbird == "1":
 if fbird == "2":
     print("Your favorite bird is..."+mybird2_explanation)
 
-cbird = input("What is your favorite color? Pick from ROYGBIV.\n")
+cbird = input("What is your favorite color? Pick from ROYGBIV. Write out the whole name of the color, lowercase.\n")
 
 #say which bird it is based on the answer
 bird1_red = """ 
@@ -330,14 +345,16 @@ if food_object == "2":
 print("Thank you for answering! Have a great day :)\n\n\n")
 
 
-with output_path.open("a") as outputfile:
-    print("Favorite Bird","Favorite Color", "Early Bird or Night Owl", sep='\t', file=outputfile)
-    print(fbird, cbird, food_object, sep='\t', file=outputfile)
+if responses == 0:
+    with open(outputfile, "w") as file:
+        outputfile = open(outputfile,"w")
+        print("First Name", "Last Name", "Gender", "Favorite Bird", "Favorite Color", "Early Bird or Night Owl", sep='\t', file=outputfile)
+        print(namefirst, namelast, gender, fbird, cbird, food_object, sep='\t', file=outputfile)
+
+else:
+    with open(outputfile, "a") as file:
+        outputfile = open(outputfile,"a")
+        print(namefirst, namelast, gender, fbird, cbird, food_object, sep='\t', file=outputfile)
 
 
-#get input from users
-#make more interactive survey based on bird1/2 responses
-#tabulate data in excel file
 #take data from excel file and create bar graph
-#def favorite_bird:
-#    if fbird = 1
